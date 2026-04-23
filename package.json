@@ -1,0 +1,17 @@
+{
+  "name": "datatistik-hono",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@better-auth/api-key": "^1.6.7",
+    "better-auth": "^1.6.7",
+    "hono": "^4.12.14",
+    "kysely": "^0.28.16",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.20.0"
+  }
+}
