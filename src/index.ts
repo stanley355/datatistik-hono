@@ -9,7 +9,7 @@ const router = new Hono<{ Bindings: AuthType }>({
 });
 
 const authCors = cors({
-  origin: ENV.corsOrigin,
+  origin: ENV.trustedOrigins.split(","),
   allowHeaders: ["Content-Type", "Authorization"],
   allowMethods: ["POST", "GET"],
   exposeHeaders: ["Content-Length"],
@@ -19,7 +19,7 @@ const authCors = cors({
 
 router.use("/api/auth/*", authCors);
 
-router.on(["POST", "GET"], "/api/auth/*", (c) => {
+router.on(["POST", "GET"], "/api/auth/*", async (c) => {
   return auth.handler(c.req.raw);
 });
 
