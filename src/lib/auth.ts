@@ -12,7 +12,17 @@ export const auth = betterAuth({
   database,
   trustedOrigins: ENV.trustedOrigins.split(","),
   baseURL: ENV.betterAuthUrl,
-  emailAndPassword: { enabled: true, requireEmailVerification: true },
+  emailAndPassword: {
+    enabled: true,
+    requireEmailVerification: true,
+    sendResetPassword: async ({ user, token }) => {
+      void mailTransport.sendMail({
+        to: user.email,
+        subject: "DELIFUNDS - Reset your password",
+        text: `Click the link to reset your password: ${ENV.frontendUrl}/auth/reset-password?token=${token}`,
+      });
+    },
+  },
   emailVerification: {
     sendOnSignUp: true,
     sendVerificationEmail: async ({ user, url, token }) => {
@@ -20,13 +30,6 @@ export const auth = betterAuth({
         to: user.email,
         subject: "DELIFUNDS - Verify your email address",
         text: `Click the link to verify your email: ${ENV.frontendUrl}/auth/verify-email?token=${token}`,
-      });
-    },
-    sendResetPassword: async ({ user, url, token }) => {
-      void mailTransport.sendMail({
-        to: user.email,
-        subject: "DELIFUNDS - Reset your password",
-        text: `Click the link to reset your password: ${url}`,
       });
     },
   },
