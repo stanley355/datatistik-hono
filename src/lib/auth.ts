@@ -2,7 +2,6 @@ import { betterAuth } from "better-auth";
 import { openAPI } from "better-auth/plugins";
 import { Pool } from "pg";
 import { ENV } from "../envs";
-import { apiKey } from "@better-auth/api-key";
 
 const database = new Pool({
   connectionString: ENV.databaseUrl,
@@ -12,8 +11,9 @@ export const auth = betterAuth({
   database,
   trustedOrigins: ENV.trustedOrigins.split(","),
   baseURL: ENV.betterAuthUrl,
-  emailAndPassword: { enabled: true },
-  plugins: [apiKey(), openAPI()],
+  emailAndPassword: { enabled: true, requireEmailVerification: true },
+  emailVerification: { sendOnSignUp: true },
+  plugins: [openAPI()],
 });
 
 export type AuthType = {
