@@ -8,10 +8,12 @@
     "better-auth": "^1.6.7",
     "hono": "^4.12.14",
     "kysely": "^0.28.16",
+    "nodemailer": "^8.0.7",
     "pg": "^8.20.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/nodemailer": "^8.0.0",
     "@types/pg": "^8.20.0"
   }
 }

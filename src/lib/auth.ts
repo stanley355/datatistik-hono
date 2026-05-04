@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { openAPI } from "better-auth/plugins";
 import { Pool } from "pg";
 import { ENV } from "../envs";
+import { mailTransport } from "./mail";
 
 const database = new Pool({
   connectionString: ENV.databaseUrl,
@@ -12,7 +13,23 @@ export const auth = betterAuth({
   trustedOrigins: ENV.trustedOrigins.split(","),
   baseURL: ENV.betterAuthUrl,
   emailAndPassword: { enabled: true, requireEmailVerification: true },
-  emailVerification: { sendOnSignUp: true },
+  emailVerification: {
+    sendOnSignUp: true,
+    sendVerificationEmail: async ({ user, url, token }) => {
+      void mailTransport.sendMail({
+        to: user.email,
+        subject: "DELIFUNDS - Verify your email address",
+        text: `Click the link to verify your email: ${ENV.frontendUrl}/auth/verify-email?token=${token}`,
+      });
+    },
+    sendResetPassword: async ({ user, url, token }) => {
+      void mailTransport.sendMail({
+        to: user.email,
+        subject: "DELIFUNDS - Reset your password",
+        text: `Click the link to reset your password: ${url}`,
+      });
+    },
+  },
   plugins: [openAPI()],
 });
 
