@@ -213,11 +213,13 @@ const seedProducts = async () => {
   for (const product of PRODUCTS) {
     await prisma.products.create({
       data: {
+        slug: product.title.replaceAll(" ", "-"),
         name: product.title,
         description: product.description,
         currency: "RMB",
         price: product.price * 100,
         unit: "lusin",
+        images: [product.image],
       },
     });
   }
