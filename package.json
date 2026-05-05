@@ -1,7 +1,8 @@
 {
   "name": "datatistik-hono",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "seed": "bun ./src/seeds/products.ts"
   },
   "dependencies": {
     "@better-auth/api-key": "^1.6.7",
