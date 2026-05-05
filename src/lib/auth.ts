@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { openAPI } from "better-auth/plugins";
+import { openAPI, admin } from "better-auth/plugins";
 import { Pool } from "pg";
 import { ENV } from "../envs";
 import { mailTransport } from "./mail";
@@ -33,7 +33,7 @@ export const auth = betterAuth({
       });
     },
   },
-  plugins: [openAPI()],
+  plugins: [openAPI(), admin()],
 });
 
 export type AuthType = {
