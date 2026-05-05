@@ -5,7 +5,10 @@
   },
   "dependencies": {
     "@better-auth/api-key": "^1.6.7",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
     "better-auth": "^1.6.7",
+    "dotenv": "^17.4.2",
     "hono": "^4.12.14",
     "kysely": "^0.28.16",
     "nodemailer": "^8.0.7",
@@ -14,6 +17,7 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/nodemailer": "^8.0.0",
-    "@types/pg": "^8.20.0"
+    "@types/pg": "^8.20.0",
+    "prisma": "^7.8.0"
   }
 }
