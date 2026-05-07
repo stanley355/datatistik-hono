@@ -10,6 +10,18 @@ const database = new Pool({
 
 export const auth = betterAuth({
   database,
+  user: {
+    modelName: "users",
+  },
+  session: {
+    modelName: "sessions",
+  },
+  account: {
+    modelName: "accounts",
+  },
+  verification: {
+    modelName: "verifications",
+  },
   trustedOrigins: ENV.trustedOrigins.split(","),
   baseURL: ENV.betterAuthUrl,
   emailAndPassword: {
@@ -32,6 +44,9 @@ export const auth = betterAuth({
         text: `Click the link to verify your email: ${ENV.frontendUrl}/auth/verify-email?token=${token}`,
       });
     },
+  },
+  advanced: {
+    database: { generateId: "uuid" },
   },
   plugins: [openAPI(), admin()],
 });
