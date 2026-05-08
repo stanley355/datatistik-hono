@@ -1,6 +1,6 @@
 FROM oven/bun:latest AS builder
 WORKDIR /app
-COPY . .
+COPY . /app
 RUN bun install
 RUN bun run build
 
