@@ -1,5 +1,5 @@
 # Build Stage
-FROM oven/bun:1.1 AS builder
+FROM oven/bun:1.3 AS builder
 WORKDIR /app
 
 # Copy package files first to leverage Docker caching
@@ -11,7 +11,7 @@ COPY . .
 RUN bun run build
 
 # Production Stage
-FROM oven/bun:1.1-slim AS runner
+FROM oven/bun:1.3-slim AS runner
 WORKDIR /app
 
 # Copy the binary from the builder stage
