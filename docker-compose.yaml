@@ -1,0 +1,14 @@
+services:
+  delifunds-hono:
+    container_name: delifunds-hono
+    image: 355355355/delifunds-hono
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 3001:3001
+    networks:
+      - docker-delifunds
+networks:
+  docker-delifunds:
+    driver: bridge

@@ -1,8 +1,9 @@
 {
   "name": "datatistik-hono",
+  "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist --target bun"
+    "build": "bun build ./src/index.ts --compile --outfile build-bin --target bun"
   },
   "dependencies": {
     "@better-auth/api-key": "^1.6.7",
