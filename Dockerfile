@@ -5,7 +5,7 @@ RUN bun install
 RUN bun run build
 
 # Production Stage
-FROM oven/bun:distroless as runner
+FROM oven/bun:alpine as runner
 COPY --from=builder /app/build-bin /app
 
 EXPOSE 3001
