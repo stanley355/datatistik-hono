@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "bun build ./src/index.ts --compile --outfile build-bin --target bun"
+    "build": "bun build ./src/index.ts --compile --outfile build-bin --target bun",
+    "migrate": "bun x auth@latest migrate"
   },
   "dependencies": {
     "@better-auth/api-key": "^1.6.7",
