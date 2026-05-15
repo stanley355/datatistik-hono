@@ -39,17 +39,12 @@ export const auth = betterAuth({
   emailVerification: {
     sendOnSignUp: true,
     sendVerificationEmail: async ({ user, url, token }) => {
-      try {
-        console.log("[auth] Send Verification Email to ", user.email);
-        void mailTransport.sendMail({
-          from: ENV.SMTP_FROM,
-          to: user.email,
-          subject: "DELIFUNDS - Verify your email address",
-          text: `Click the link to verify your email: ${ENV.frontendUrl}/auth/verify-email?token=${token}`,
-        });
-      } catch (err) {
-        console.error("[auth] Send Verification Email fail", err);
-      }
+      void mailTransport.sendMail({
+        from: ENV.SMTP_FROM,
+        to: user.email,
+        subject: "DELIFUNDS - Verify your email address",
+        text: `Click the link to verify your email: ${ENV.frontendUrl}/auth/verify-email?token=${token}`,
+      });
     },
   },
   advanced: {
