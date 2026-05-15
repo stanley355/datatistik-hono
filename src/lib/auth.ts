@@ -47,6 +47,9 @@ export const auth = betterAuth({
       });
     },
   },
+  cookie: {
+    domain: ".delifunds.com",
+  },
   advanced: {
     database: { generateId: "uuid" },
   },
